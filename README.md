@@ -111,6 +111,25 @@ calculate_atr для расчета ATR.
 График:
 ![GOOGL_1](https://github.com/user-attachments/assets/cc37d222-d774-4707-b88d-d561d4c3d5c5)
 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ЗАДАНИЕ 6
+Сводка изменений
+В файл data_plotting.py:
+Добавлен параметр style в функцию create_and_save_plot.
+Добавлено применение стиля через plt.style.use с обработкой ошибок.
+
+В файл main.py:
+Добавлен запрос стиля графика у пользователя. Пользователь может выбрать стиль графика, введя его название. Например, 'seaborn', 'ggplot' или 'default'.
+Добавлен параметр style в вызов функции create_and_save_plot.
+
+Пример выполнения кода:
+Запись в консоли:
+![Консоль_задание_6](https://github.com/user-attachments/assets/0bee43e3-de0d-4f66-82a1-679c5e8316c8)
+График:
+![График_задание_6](https://github.com/user-attachments/assets/e63ff9c2-f5ef-4fa0-9633-001fe2a1f03f)
+
+
+
 
 
 
