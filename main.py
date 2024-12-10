@@ -1,6 +1,7 @@
 import data_download as dd
 import data_plotting as dplt
 import pandas as pd
+import data_processing as dp
 
 
 def calculate_and_display_average_price(data: 'pd.DataFrame') -> None:
@@ -115,10 +116,13 @@ def main():
     # Проверяем колебания цен
     notify_if_strong_fluctuations(stock_data, threshold)
 
+    # Расчет индикаторов
+    stock_data = dp.calculate_indicators(stock_data)  # Добавлен расчет индикаторов
+
     # Строим график с индикаторами
 
     # Запрос стиля оформления графика
-    style = input("Введите стиль оформления графика (например, 'seaborn', 'ggplot', 'default'): ").strip()  # Изменение
+    style = input("Введите стиль оформления графика (например, 'seaborn', 'ggplot', 'default'): ").strip() # Изменение
 
     # Создание и сохранение графика
     dplt.create_and_save_plot(stock_data, ticker, period or f"{start_date}_to_{end_date}", style=style)  # Изменение
