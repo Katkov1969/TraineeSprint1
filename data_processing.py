@@ -18,3 +18,18 @@ def calculate_indicators(data):
     data['Mean_Close'] = data['Close'].rolling(window=20).mean()
 
     return data
+
+
+def calculate_average_close(data):
+    """
+    Вычисляет среднее значение цены закрытия и выводит результат в консоль.
+
+    :param data: DataFrame с данными об акциях.
+    :return: None
+    """
+    if 'Close' not in data:
+        raise ValueError("В данных отсутствует колонка 'Close' для расчета среднего значения.")
+
+    average_close = data['Close'].mean()
+    print(f"Среднее значение цены закрытия: {average_close:.2f}")
+    return average_close

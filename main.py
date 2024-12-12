@@ -4,6 +4,7 @@ import pandas as pd
 import data_processing as dp
 
 
+
 def calculate_and_display_average_price(data: 'pd.DataFrame') -> None:
     """
     Вычисляет и выводит среднюю цену закрытия акций за заданный период.
@@ -119,6 +120,8 @@ def main():
     # Расчет индикаторов
     stock_data = dp.calculate_indicators(stock_data)  # Добавлен расчет индикаторов
 
+
+
     # Строим график с индикаторами
 
     # Запрос стиля оформления графика
@@ -127,6 +130,12 @@ def main():
     # Создание и сохранение графика
     dplt.create_and_save_plot(stock_data, ticker, period or f"{start_date}_to_{end_date}", style=style)  # Изменение
 
+
+    # Расчет среднего значения цены закрытия
+    dp.calculate_average_close(stock_data)
+
+    # Построение интерактивного графика
+    dplt.create_interactive_plot(stock_data, ticker)
 
     # Спрашиваем пользователя, хочет ли он экспортировать данные в CSV
     export_choice = input("Хотите ли вы экспортировать данные в CSV? (да/нет): ").strip().lower()

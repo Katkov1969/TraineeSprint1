@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 
 def create_and_save_plot(data, ticker, period, filename=None, style="default"):
@@ -86,3 +87,45 @@ def create_and_save_plot(data, ticker, period, filename=None, style="default"):
     plt.tight_layout()
     plt.savefig(filename)
     print(f"График сохранён как {filename}")
+
+def create_interactive_plot(data, ticker):
+    """
+    Создаёт интерактивный график с использованием Plotly.
+
+    :param data: DataFrame с данными об акциях.
+    :param ticker: Тикер акции.
+    :return: None (открывает интерактивный график в браузере).
+    """
+    if 'Close' not in data:
+        raise ValueError("В данных отсутствует колонка 'Close' для построения графика.")
+
+    fig = go.Figure()
+
+    # Добавляем линию цены закрытия
+    fig.add_trace(go.Scatter(
+        x=data.index,
+        y=data['Close'],
+        mode='lines',
+        name='Close Price'
+    ))
+
+    # Добавляем скользящее среднее, если оно есть
+    if 'Mean_Close' in data:
+        fig.add_trace(go.Scatter(
+            x=data.index,
+            y=data['Mean_Close'],
+            mode='lines',
+            name='Moving Average (20 days)',
+            line=dict(dash='dash', color='orange')
+        ))
+
+    # Настройка графика
+    fig.update_layout(
+        title=f"Интерактивный график акций {ticker}",
+        xaxis_title="Дата",
+        yaxis_title="Цена",
+        template="plotly_white"
+    )
+
+    # Отображаем график
+    fig.show()
